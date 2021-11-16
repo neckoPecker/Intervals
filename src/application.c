@@ -28,6 +28,12 @@ int main (void)
   printf ("> Enter minutes for break time:\t\t");
   fgets (break_time, MAX_BUFFER_LENGTH, stdin);
 
+  if (atoi (active_time) == 0 || atoi (break_time) == 0)
+    {
+      printf ("Invalid input. Enter integers.\n");
+      return -1;
+    }
+
   CLEARSCREEN;
 
   while (1)
