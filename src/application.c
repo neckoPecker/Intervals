@@ -1,9 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
-#define MAX_BUFFER_LENGTH 8
+#define MAX_BUFFER_LENGTH 128
+#define PROGRAM_NAME "Intervals"
+
 #define CLEARSCREEN printf("\e[1;1H\e[2J")
+
+void send_notification (char* string)
+{
+  char output[MAX_BUFFER_LENGTH];
+  snprintf (output, sizeof (output), "%s%s \"%s\"",
+	    "notify-send ", PROGRAM_NAME, string);
+  system (output);
+}
 
 void start_timer (unsigned int seconds)
 {
@@ -44,6 +55,7 @@ int main (void)
       CLEARSCREEN;
       start_timer (atoi (active_time));
       printf ("Finished active timer.\n");
+      send_notification ("Active timer finished");
 
       // Break timer
       printf ("[Press enter to start break timer...]\n\n");
@@ -51,6 +63,7 @@ int main (void)
       CLEARSCREEN;
       start_timer (atoi (break_time));
       printf ("Finished break timer.\n");
+      send_notification ("Break timer finished");
     }
 
   return 0;
