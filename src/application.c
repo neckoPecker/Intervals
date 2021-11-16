@@ -8,7 +8,12 @@
 void start_timer (unsigned int seconds)
 {
   fflush (stdout);
-  sleep (seconds);
+  for (unsigned int i = seconds; i > 0; i--)
+    {
+      CLEARSCREEN;
+      printf (" %d\n", i);
+      sleep (1);
+    }
 }
 
 int main (void)
