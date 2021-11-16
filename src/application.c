@@ -53,7 +53,7 @@ int main (void)
       printf ("[Press enter to start active timer...]\n\n");
       getc (stdin);
       CLEARSCREEN;
-      start_timer (atoi (active_time));
+      start_timer (atoi (active_time) * 60);
       printf ("Finished active timer.\n");
       send_notification ("Active timer finished");
 
@@ -61,7 +61,7 @@ int main (void)
       printf ("[Press enter to start break timer...]\n\n");
       getc (stdin);
       CLEARSCREEN;
-      start_timer (atoi (break_time));
+      start_timer (atoi (break_time) * 60);
       printf ("Finished break timer.\n");
       send_notification ("Break timer finished");
     }
